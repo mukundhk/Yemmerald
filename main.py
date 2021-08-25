@@ -4,7 +4,7 @@ import random
 from keep_alive import keep_alive
 
 client = discord.Client()
-token = token = os.environ['token']
+token = os.environ['token']
 
 f_gifs = [
     "https://tenor.com/view/f-press-f-shaking-gif-14143393",
@@ -12,7 +12,6 @@ f_gifs = [
     "https://tenor.com/view/salute-letter-f-respect-crying-gif-17677784",
     "https://tenor.com/view/press-f-pay-respect-keyboard-gif-12855017",
 ]
-hello=["https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326"]
 salam=["salamalaikum","salam","assalam alaikum","assalam","assalamualaikum","assalamualikum"]
 salam_r=["Assalamualikum Kenobi Al Habibi","Walaikum Assalam Al Obi Wan Al Kenobi"]
 
@@ -28,7 +27,7 @@ async def on_message(msg):
         return
 
     if msg.content.lower() == "hello there":
-        await msg.channel.send(random.choice(hello))
+        await msg.channel.send("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
 
     if msg.content.lower() == 'f':
         await msg.channel.send(random.choice(f_gifs))
