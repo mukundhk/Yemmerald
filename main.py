@@ -27,6 +27,9 @@ async def on_message(msg):
     if msg.author.bot: 
         return 
 
+    if msg.content.lower()=="y.ping":
+      await msg.channel.send("Pong")
+      
     if msg.content.lower() == "hello there":
         await msg.channel.send("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
 
