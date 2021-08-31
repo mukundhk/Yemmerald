@@ -81,6 +81,7 @@ async def on_message(msg):
             unit=words[j+ 1]
             amount=float(words[j])
             if unit in ["m","metre","meter","meters","metres"]:
+                amount_c=1
                 unit_type_choice=random.choice(units_dict["length"])
             elif unit in ["in",'inches','inch']:
                 amount_c=amount
