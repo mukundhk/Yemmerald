@@ -6,10 +6,21 @@ from keep_alive import keep_alive
 
 #units_file=open("units.dat","rb")
 #units_fh=pickle.load(units_file)
-amount=0
-unit=""
-converted=0
-units_dict={"length":[[39.37007874,amount,unit,"is the length of approximately",converted,"'Wooden Rice Paddle Versatile Serving Spoons' laid lengthwise."], [2.021,amount,unit,"is the same as", converted,"'Logitech Wireless Keyboard K350s' laid widthwise by each other."]], "weight":[[]]}
+'''amount = 0
+unit = ""
+converted = 0'''
+units_dict = {
+    "length":
+    [[
+        39.37007874, "a", 'u', "is the length of approximately", 'c',
+        "'Wooden Rice Paddle Versatile Serving Spoons' laid lengthwise."
+    ],
+     [
+         2.021, 'a', 'u', "is the same as", 'c',
+         "'Logitech Wireless Keyboard K350s' laid widthwise by each other."
+     ]],
+    "weight": [[]]
+}
 
 
 
@@ -36,10 +47,16 @@ salam_o = [
 ]
 
 def UUC(amount,unit,converted,lst):
-  response=""
-  for i in lst:
-    response=response+str(i)+" "
-  return response
+    response=""
+    for i in lst:
+      if i=="a":
+        i=amount
+      if i=='u':
+        i=unit
+      if i=='c':
+        i=converted          
+      response=response+str(i)+" "
+    return response
 
 
 
@@ -67,7 +84,7 @@ async def on_message(msg):
     if msg.content.lower() in salam_i:
         await msg.channel.send(random.choice(salam_o))
 
-    
+
     words = msg.content.lower().split()
     for j in range(len(words)):
         if words[j].isdigit():
@@ -76,8 +93,8 @@ async def on_message(msg):
                 amount=words[j]
                 length_choice=random.choice(units_dict["length"])
                 converted=length_choice[0] * float(amount)
-                await msg.channel.send(UUC(amount,unit,converted,length_choice))
-    
-    
+                await msg.channel.send(UUC(amount,unit,converted,length_choice[1:]))
+
+
 keep_alive()
 client.run(token)
