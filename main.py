@@ -54,7 +54,7 @@ async def on_message(msg):
 
     words = msg.content.lower().split()
     for j in range(len(words)-1):
-        if words[j].isdigit():
+        if words[j].isdigit() or ("." in words[j]):
             unit=words[j+ 1]
             amount=float(words[j])
             amount_c=amount
