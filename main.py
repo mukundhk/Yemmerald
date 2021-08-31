@@ -12,6 +12,7 @@ converted=None
 units_dict={"length":[[39.37007874,amount,unit,"is the length of approximately",converted,"'Wooden Rice Paddle Versatile Serving Spoons' laid lengthwise."], [2.021,amount,unit,"is the same as", converted,"'Logitech Wireless Keyboard K350s' laid widthwise by each other."]], "weight":[[]]}
 
 
+
 client = discord.Client()
 token = os.environ['token']
 
@@ -66,8 +67,10 @@ async def on_message(msg):
             if unit=="m" or "metre" or "meter" or "meters" or "metres":
               length_choice=random.choice(units_dict["length"])
               converted=length_choice[0] * float(amount)
+              response=""
               for i in length_choice[1:]:
-                await msg.channel.send(i)
+                response=response+str(i)
+              await msg.channel.send(response)
     
 keep_alive()
 client.run(token)
