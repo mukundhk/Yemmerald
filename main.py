@@ -4,27 +4,6 @@ import random
 from keep_alive import keep_alive
 
 
-#units_file=open("units.dat","rb")
-#units_fh=pickle.load(units_file)
-'''amount = 0
-unit = ""
-converted = 0'''
-units_dict = {
-    "length":
-    [[
-        39.37007874, "a", 'u', "is the length of approximately", 'c',
-        "'Wooden Rice Paddle Versatile Serving Spoons' laid lengthwise."
-    ],
-     [
-         2.021, 'a', 'u', "is the same as", 'c',
-         "'Logitech Wireless Keyboard K350s' laid widthwise by each other."
-     ]],
-    "weight": [[]]
-}
-
-
-
-
 client = discord.Client()
 token = os.environ['token']
 
@@ -45,6 +24,18 @@ salam_i = [
 salam_o = [
     "Walaikum Salam Kenobi Al Habibi", "Walaikum Assalam Al Obi Wan Al Kenobi"
 ]
+units_dict = {
+    "length":
+    [[
+        39.37007874, "a", 'u', "is the length of approximately", 'c',
+        "'Wooden Rice Paddle Versatile Serving Spoons' laid lengthwise."
+    ],
+     [
+         2.021, 'a', 'u', "is the same as", 'c',
+         "'Logitech Wireless Keyboard K350s' laid widthwise by each other."
+     ]],
+    "weight": [[]]
+}
 
 def UUC(amount,unit,lst,amount_c=1):
     converted=lst[0] * amount_c
