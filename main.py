@@ -72,16 +72,16 @@ async def on_message(msg):
         return
 
     if msg.content.lower() == "y.ping":
-        await msg.channel.send("Pong")
+        await msg.reply("Pong")
 
     if msg.content.lower() == "hello there":
-        await msg.channel.send("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
+        await msg.reply("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
 
     if msg.content.lower() == 'f':
-        await msg.channel.send(random.choice(f_gifs))
+        await msg.reply(random.choice(f_gifs))
 
     if msg.content.lower() in salam_i:
-        await msg.channel.send(random.choice(salam_o))
+        await msg.reply(random.choice(salam_o))
 
 
     words = msg.content.lower().split()
@@ -101,7 +101,7 @@ async def on_message(msg):
                 unit_type_choice=random.choice(units_dict["length"])
             
 
-            await msg.channel.send(UUC(amount,unit,unit_type_choice,amount_c))
+            await msg.reply(UUC(amount,unit,unit_type_choice,amount_c))
 
                 
 
