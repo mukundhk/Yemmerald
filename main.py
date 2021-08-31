@@ -6,10 +6,11 @@ from keep_alive import keep_alive
 
 #units_file=open("units.dat","rb")
 #units_fh=pickle.load(units_file)
-amount=None
-unit=None
-converted=None
+amount=0
+unit=""
+converted=0
 units_dict={"length":[[39.37007874,amount,unit,"is the length of approximately",converted,"'Wooden Rice Paddle Versatile Serving Spoons' laid lengthwise."], [2.021,amount,unit,"is the same as", converted,"'Logitech Wireless Keyboard K350s' laid widthwise by each other."]], "weight":[[]]}
+
 
 
 
@@ -33,6 +34,13 @@ salam_i = [
 salam_o = [
     "Walaikum Salam Kenobi Al Habibi", "Walaikum Assalam Al Obi Wan Al Kenobi"
 ]
+
+def UUC(amount,unit,converted,lst):
+  response=""
+  for i in lst:
+    response=response+str(i)+" "
+  return response
+
 
 
 @client.event
@@ -61,16 +69,15 @@ async def on_message(msg):
 
     
     words = msg.content.lower().split()
-    for amount in words:
-        if amount.isdigit():
-            unit=words[amount.index(amount) + 1]
+    for j in range(len(words)):
+        if words[j].isdigit():
+            unit=words[j+ 1]
             if unit=="m" or "metre" or "meter" or "meters" or "metres":
-              length_choice=random.choice(units_dict["length"])
-              converted=length_choice[0] * float(amount)
-              response=""
-              for i in length_choice[1:]:
-                response=response+str(i)
-              await msg.channel.send(response)
+                amount=words[j]
+                length_choice=random.choice(units_dict["length"])
+                converted=length_choice[0] * float(amount)
+                await msg.channel.send(UUC(amount,unit,converted,length_choice))
+    
     
 keep_alive()
 client.run(token)
