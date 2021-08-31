@@ -46,8 +46,8 @@ salam_o = [
     "Walaikum Salam Kenobi Al Habibi", "Walaikum Assalam Al Obi Wan Al Kenobi"
 ]
 
-def UUC(amount,unit,lst):
-    converted=lst[0] * float(amount)
+def UUC(amount,unit,lst,amount_c=1):
+    converted=lst[0] * amount_c
     response=""
     for i in lst[1:]:
       if i=="a":
@@ -88,18 +88,20 @@ async def on_message(msg):
     for j in range(len(words)):
         if words[j].isdigit():
             unit=words[j+ 1]
-            amount=words[j]
+            amount=float(words[j])
             if unit in ["m","metre","meter","meters","metres"]:
                 unit_type_choice=random.choice(units_dict["length"])
             elif unit in ["in",'inches','inch']:
-                amount/=39.37
+                amount_c=amount
+                amount_c/=39.37
                 unit_type_choice=random.choice(units_dict["length"])
             elif unit in ['feet','foot','ft']:
-                amount/=3.281
+                amount_c=amount
+                amount_c/=3.281
                 unit_type_choice=random.choice(units_dict["length"])
             
 
-            await msg.channel.send(UUC(amount,unit,unit_type_choice))
+            await msg.channel.send(UUC(amount,unit,unit_type_choice,amount_c))
 
                 
 
