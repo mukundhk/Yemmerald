@@ -46,14 +46,15 @@ salam_o = [
     "Walaikum Salam Kenobi Al Habibi", "Walaikum Assalam Al Obi Wan Al Kenobi"
 ]
 
-def UUC(amount,unit,converted,lst):
+def UUC(amount,unit,lst):
+    converted=lst[0] * float(amount)
     response=""
-    for i in lst:
+    for i in lst[1:]:
       if i=="a":
         i=amount
-      if i=='u':
+      elif i=='u':
         i=unit
-      if i=='c':
+      elif i=='c':
         i=converted          
       response=response+str(i)+" "
     return response
@@ -74,9 +75,7 @@ async def on_message(msg):
         await msg.channel.send("Pong")
 
     if msg.content.lower() == "hello there":
-        await msg.channel.send(
-            "https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326"
-        )
+        await msg.channel.send("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
 
     if msg.content.lower() == 'f':
         await msg.channel.send(random.choice(f_gifs))
@@ -89,11 +88,20 @@ async def on_message(msg):
     for j in range(len(words)):
         if words[j].isdigit():
             unit=words[j+ 1]
-            if unit=="m" or "metre" or "meter" or "meters" or "metres":
-                amount=words[j]
-                length_choice=random.choice(units_dict["length"])
-                converted=length_choice[0] * float(amount)
-                await msg.channel.send(UUC(amount,unit,converted,length_choice[1:]))
+            amount=words[j]
+            if unit in ["m","metre","meter","meters","metres"]:
+                unit_type_choice=random.choice(units_dict["length"])
+            elif unit in ["in",'inches','inch']:
+                amount/=39.37
+                unit_type_choice=random.choice(units_dict["length"])
+            elif unit in ['feet','foot','ft']:
+                amount/=3.281
+                unit_type_choice=random.choice(units_dict["length"])
+            
+
+            await msg.channel.send(UUC(amount,unit,unit_type_choice))
+
+                
 
 
 keep_alive()
