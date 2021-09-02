@@ -59,7 +59,10 @@ async def on_message(msg):
     for j in range(len(words)-1):
         if words[j].isdigit() or ("." in words[j]):
             unit=words[j+ 1]
-            amount=float(words[j])
+            try:
+              amount=float(words[j])
+            except:
+              continue
             amount_c=amount
             if unit in ["m","metre","meter","meters","metres"]:
                 unit_type_choice=random.choice(db["units_dict"]["length"])
