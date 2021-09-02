@@ -34,51 +34,53 @@ async def on_ready():
 
 
 @client.event
-async def on_message(msg):
-    if msg.author.bot:
+async def on_message(message):
+    msg=message.content.lower()
+    if message.author.bot:
         return
 
-    if msg.content.lower() == "y.ping":
-        await msg.reply("Pong")
+    elif msg == "y.ping":
+        await message.reply("Pong")
 
-    if msg.content.lower() == "hello there":
-        await msg.reply("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
+    elif msg == "hello there":
+        await message.reply("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
 
-    if msg.content.lower() == 'f':
-        await msg.reply(random.choice(db['f_gifs']))
+    elif msg == 'f':
+        await message.reply(random.choice(db['f_gifs']))
 
-    if msg.content.lower() in db["salam_i"]:
-        await msg.reply(random.choice(db["salam_o"]))
+    elif msg in db["salam_i"]:
+        await message.reply(random.choice(db["salam_o"]))
     
-    if msg.content.lower()=="mukund.db":
+    elif msg == "mukund.db":
       for i in db.keys():
-        await msg.reply(f"{i}={db[i]}")  
+        await message.reply(f"{i}={db[i]}")  
 
 
-    words = msg.content.lower().split()
-    for j in range(len(words)-1):
-        if words[j].isdigit() or ("." in words[j]):
-            unit=words[j+ 1]
-            try:
-              amount=float(words[j])
-            except:
-              continue
-            amount_c=amount
-            if unit in ["m","metre","meter","meters","metres"]:
-                unit_type_choice=random.choice(db["units_dict"]["length"])
-            elif unit in ["cm",'centimeter','centimetre','centimeters','centimetres']:
-                amount_c/=100
-                unit_type_choice=random.choice(db["units_dict"]["length"])
-            elif unit in ["in",'inches','inch']:
-                amount_c/=39.37
-                unit_type_choice=random.choice(db["units_dict"]["length"])
-            elif unit in ['feet','foot','ft']:
-                amount_c/=3.281
-                unit_type_choice=random.choice(db["units_dict"]["length"])
-            else:
-              continue          
+    else:
+      words = msg.split()
+      for j in range(len(words)-1):
+          if words[j].isdigit() or ("." in words[j]):
+              unit=words[j+ 1]
+              try:
+                amount=float(words[j])
+              except:
+                continue
+              amount_c=amount
+              if unit in ["m","metre","meter","meters","metres"]:
+                  unit_type_choice=random.choice(db["units_dict"]["length"])
+              elif unit in ["cm",'centimeter','centimetre','centimeters','centimetres']:
+                  amount_c/=100
+                  unit_type_choice=random.choice(db["units_dict"]["length"])
+              elif unit in ["in",'inches','inch']:
+                  amount_c/=39.37
+                  unit_type_choice=random.choice(db["units_dict"]["length"])
+              elif unit in ['feet','foot','ft']:
+                  amount_c/=3.281
+                  unit_type_choice=random.choice(db["units_dict"]["length"])
+              else:
+                continue          
 
-            await msg.reply(UUC(amount,unit,unit_type_choice,amount_c))
+              await message.reply(UUC(amount,unit,unit_type_choice,amount_c))
 
                 
 
