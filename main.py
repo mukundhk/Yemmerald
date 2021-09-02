@@ -4,7 +4,10 @@ import random
 from keep_alive import keep_alive
 from replit import db
 
-
+'''lst=db["key"]["optional"]
+list_add=[]
+for i in list_add:
+  lst.append(i)'''
 
 client = discord.Client()
 token = os.environ['token']
@@ -69,7 +72,8 @@ async def on_message(msg):
             elif unit in ['feet','foot','ft']:
                 amount_c/=3.281
                 unit_type_choice=random.choice(db["units_dict"]["length"])
-            
+            else:
+              continue          
 
             await msg.reply(UUC(amount,unit,unit_type_choice,amount_c))
 
