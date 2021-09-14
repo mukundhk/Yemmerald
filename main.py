@@ -53,7 +53,8 @@ async def on_message(message):
     
     elif msg == "mukund.db":
       for i in db.keys():
-        await message.reply(f"{i}={db[i]}")  
+        await message.reply(f"{i}={db[i]}") 
+        
 
 
     else:
@@ -78,9 +79,20 @@ async def on_message(message):
                   amount_c/=3.281
                   unit_type_choice=random.choice(db["units_dict"]["length"])
               else:
-                continue          
-
-              await message.reply(UUC(amount,unit,unit_type_choice,amount_c))
+                continue
+              
+              converted=unit_type_choice[0] * amount_c
+              response=""
+              for i in unit_type_choice[1:]:
+                if i=="a":
+                  i=amount
+                elif i=='u':
+                  i=unit
+                elif i=='c':
+                  i=converted          
+                response=response+str(i)+" "
+              
+              await message.reply(response)
 
                 
 
