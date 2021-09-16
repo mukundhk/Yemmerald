@@ -38,7 +38,16 @@ async def on_message(message):
     
     elif msg == "mukund.db":
       for i in db.keys():
-        await message.reply(f"{i}={db[i]}") 
+        await message.reply(f"{i}={db[i]}")
+    
+    elif msg=='y.help':
+        embedVar = discord.Embed(title="Yemmerald Features", description="Bot made by @Zeus_1347#0765. DM him if the bot is offline or if you have any suggestions or feedback. \n PS: If you are a Mod, change the @Yemmerald role's color to #00FF00 for *aesthetics*.", color=0x00ff00)
+        embedVar.add_field(name="Useless Unit Convertor", value="Compares your numbers and values to useless random objects\n(Still working on it. Will be adding more to it. Right now only length values will be compared)", inline=False)
+        embedVar.add_field(name="Hello There", value="Replies with General Kenobi", inline=False)
+        embedVar.add_field(name="F", value="Replies with F to pay  respects", inline=False)
+        embedVar.add_field(name="Salam", value="Replies with Alaikum Assalam", inline=False)
+        await message.channel.send(embed=embedVar)
+
         
 
 
