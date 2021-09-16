@@ -1,6 +1,7 @@
 import discord
 import os
 import random
+from discord.ext import commands
 from keep_alive import keep_alive
 from replit import db
 
@@ -15,7 +16,8 @@ token = os.environ['token']
 
 @client.event
 async def on_ready():
-    print("Bot online as {0.user}".format(client))
+  await client.change_presence(status=discord.Status.online, activity=discord.Game("y.help"))
+  print("Bot online as {0.user}".format(client))
 
 
 @client.event
