@@ -13,21 +13,6 @@ client = discord.Client()
 token = os.environ['token']
 
 
-def UUC(amount,unit,lst,amount_c):
-    converted=lst[0] * amount_c
-    response=""
-    for i in lst[1:]:
-      if i=="a":
-        i=amount
-      elif i=='u':
-        i=unit
-      elif i=='c':
-        i=converted          
-      response=response+str(i)+" "
-    return response
-
-
-
 @client.event
 async def on_ready():
     print("Bot online as {0.user}".format(client))
@@ -63,6 +48,8 @@ async def on_message(message):
           if words[j].isdigit() or ("." in words[j]):
               unit=words[j+ 1]
               amount=float(words[j])
+              if amount==int(amount):
+                amount=int(amount)  
               amount_c=amount
               if unit in ["m","metre","meter","meters","metres"]:
                   unit_type_choice=random.choice(db["units_dict"]["length"])
