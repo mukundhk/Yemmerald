@@ -26,6 +26,9 @@ async def on_message(message):
     if message.author.bot:
         return
 
+    elif client.user.mentioned_in(message):
+        await message.reply("Yes?\nUse y.help if you need it.")
+
     elif msg == "y.ping":
         await message.reply("Pong")
 
@@ -48,10 +51,7 @@ async def on_message(message):
         embedVar.add_field(name="Hello There", value="Replies with General Kenobi", inline=False)
         embedVar.add_field(name="F", value="Replies with F to pay  respects", inline=False)
         embedVar.add_field(name="Salam", value="Replies with Alaikum Assalam", inline=False)
-        await message.channel.send(embed=embedVar)
-
-        
-
+        await message.reply(embed=embedVar)
 
     else:
       words = msg.split()
@@ -76,7 +76,9 @@ async def on_message(message):
               else:
                 continue
               
-              converted=int(unit_type_choice[0] * amount_c)
+              converted=unit_type_choice[0] * amount_c
+              if not converted < 1:
+                converted=int(converted)
               response=""
               for i in unit_type_choice[1:]:
                 if i=="a":
