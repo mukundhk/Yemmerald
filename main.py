@@ -5,8 +5,6 @@ from discord.ext import commands
 from keep_alive import keep_alive
 from replit import db
 
-del db['units_dict']
-
 client = discord.Client()
 token = os.environ['token']
 
@@ -80,23 +78,37 @@ async def on_message(message):
                 unit = words[j + 1]
                 amount_c = amount
                 if unit in ["m", "metre", "meter", "meters", "metres"]:
-                    unit_type_choice = random.choice(
-                        db["units_dict"]["length"])
+                    unit_type_choice=random.choice(db['length'])
                 elif unit in [
                         "cm", 'centimeter', 'centimetre', 'centimeters',
-                        'centimetres'
+                        'centimetres','cms'
                 ]:
                     amount_c /= 100
-                    unit_type_choice = random.choice(
-                        db["units_dict"]["length"])
+                    unit_type_choice=random.choice(db['length'])
                 elif unit in ["in", 'inches', 'inch']:
                     amount_c /= 39.37
-                    unit_type_choice = random.choice(
-                        db["units_dict"]["length"])
+                    unit_type_choice=random.choice(db['length'])
                 elif unit in ['feet', 'foot', 'ft']:
                     amount_c /= 3.281
-                    unit_type_choice = random.choice(
-                        db["units_dict"]["length"])
+                    unit_type_choice=random.choice(db['length'])
+                elif unit in ['kilometers','kilometres','kilometer','kilometre','km','kms']:
+                    amount_c*=1000
+                    unit_type_choice=random.choice(db['length'])
+                elif unit in ['kg','kilogram','kgs','kilograms','kilo','kilos']:
+                    unit_type_choice=random.choice(db['weight'])
+                elif unit in ['g','gs','gram','grams']:
+                    amount_c*=1000
+                    unit_type_choice=random.choice(db['weight'])
+                elif unit in ['lb','lbs','pound','pounds']:
+                    amount_c/=2.205
+                    unit_type_choice=random.choice(db['weight'])
+                elif unit in ['ounce','ounces','oz']:
+                    amount_c/=35.274
+                    unit_type_choice=random.choice(db['weight'])
+                elif unit in ['ton','tons','tonne','tonnes']:
+                    amount_c/=1000
+                    unit_type_choice=random.choice(db['weight'])
+
                 else:
                     continue
 
