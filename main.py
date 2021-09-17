@@ -45,24 +45,26 @@ async def on_message(message):
 
     elif msg == 'y.help':
         embedVar = discord.Embed(
-            title="Yemmerald Features",
+            title="Yemmerald v2.1.2",
             description=
-            "Bot made by **@Zeus_1347#0765**. Please DM if the bot is offline or if you have any suggestions or feedback. \n PS: If you are a Mod, change the **@Yemmerald** role's color to `#26a43b` for __*~aEsThEtIcS~*__.",
+            "Bot made by **@Zeus_1347#0765**. Please DM if the bot is offline or if you have any suggestions or feedback. \n ",
             color=0x26a43b)
+        embedVar.set_thumbnail(url="https://i.imgur.com/3VJ5njN.jpg")
         embedVar.add_field(
             name="Useless Unit Convertor",
             value=
-            "Compares your numbers and values to useless random objects\n(Still working on it. Will be adding more to it. Right now only length values will be compared)",
+            "Compares your numbers and values to useless random objects\n(Still working on it. Right now only length and weight values will be compared)",
             inline=False)
         embedVar.add_field(name="Hello There",
                            value="Replies with General Kenobi",
                            inline=False)
-        embedVar.add_field(name="F",
-                           value="Replies with F to pay  respects",
-                           inline=False)
         embedVar.add_field(name="Salam",
                            value="Replies with Alaikum Assalam",
                            inline=False)
+        embedVar.add_field(name="F",
+                           value="Replies with F to pay  respects",
+                           inline=False)
+        embedVar.set_footer(text="PS: If you are a Mod, change the **@Yemmerald** role's color to `#26a43b` for __*~aEsThEtIcS~*__.")
         await message.reply(embed=embedVar)
 
     else:
