@@ -45,7 +45,7 @@ async def on_message(message):
 
     elif msg == 'y.help':
         embedVar = discord.Embed(
-            title="Yemmerald v2.1.2",
+            title="Yemmerald v2.2.1",
             description=
             "Bot made by **@Zeus_1347#0765**. Please DM if the bot is offline or if you have any suggestions or feedback. \n ",
             color=0x26a43b)
