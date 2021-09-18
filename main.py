@@ -70,7 +70,9 @@ async def on_message(message):
     else:
         words = msg.split()
         for j in range(len(words) - 1):
-            if words[j].isdigit() or ("." in words[j]):
+            if words[j].isdigit() or ("." in words[j]) or words[j]=='a' or words[j]=='an':
+                if words[j]=='a' or words[j]=='an':
+                    amount=1
                 try:
                     amount = float(words[j])
                 except ValueError:
