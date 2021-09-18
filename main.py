@@ -112,6 +112,36 @@ async def on_message(message):
                 elif unit in ['ton','tons','tonne','tonnes']:
                     amount_c/=1000
                     unit_type_choice=random.choice(db['weight'])
+                elif unit in ['hours','hour','hrs']:
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['minutes','minute','min','mins']:
+                    amount_c/=60
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['seconds','second','sec','secs']:
+                    amount_c/=3600
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['days','day']:
+                    amount_c*=24
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['weeks','week']:
+                    amount_c*=168
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['months','month']:
+                    amount_c*=730.001
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['years','year','yrs','yr']:
+                    amount_c*=8760.00240024
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['decades','decade']:
+                    amount_c*=87600.0240024
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['centuries','century']:
+                    amount_c*=876000.240024
+                    unit_type_choice=random.choice(db['time'])
+                elif unit in ['millenium','millenia']:
+                    amount_c=8760002.40024
+                    unit_type_choice=random.choice(db['time'])             
+                
 
                 else:
                     continue
