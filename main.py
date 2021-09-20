@@ -53,7 +53,7 @@ async def on_message(message):
         embedVar.add_field(
             name="Useless Unit Convertor",
             value=
-            "Compares your numbers and values to useless random objects\n(Still working on it. Right now only length and weight values will be compared)",
+            "Use `y.convert <amount> <unit>` \nCompares your lengths, weights and time to useless random objects",
             inline=False)
         embedVar.add_field(name="Hello There",
                            value="Replies with General Kenobi",
@@ -67,10 +67,10 @@ async def on_message(message):
         embedVar.set_footer(text="PS: If you are a Mod, change the **@Yemmerald** role's color to `#26a43b` for __*~aEsThEtIcS~*__.")
         await message.reply(embed=embedVar)
 
-    else:
+    elif msg.startswith("y.convert"):
         words = msg.split()
-        for j in range(len(words) - 1):
-            if words[j].isdigit() or ("." in words[j]) or words[j]=='a' or words[j]=='an':
+        for j in range(1,len(words) - 1):
+            if words[j].isdigit() or ("." in words[j]) or (words[j]=='a') or (words[j]=='an'):
                 if words[j]=='a' or words[j]=='an':
                     amount=1
                 try:
@@ -83,13 +83,10 @@ async def on_message(message):
                 amount_c = amount
                 if unit in ["m", "metre", "meter", "meters", "metres"]:
                     unit_type_choice=random.choice(db['length'])
-                elif unit in [
-                        "cm", 'centimeter', 'centimetre', 'centimeters',
-                        'centimetres','cms'
-                ]:
+                elif unit in ["cm", 'centimeter', 'centimetre', 'centimeters','centimetres','cms']:
                     amount_c /= 100
                     unit_type_choice=random.choice(db['length'])
-                elif unit in ["in", 'inches', 'inch']:
+                elif unit in ['in','inches', 'inch']:
                     amount_c /= 39.37
                     unit_type_choice=random.choice(db['length'])
                 elif unit in ['feet', 'foot', 'ft']:
@@ -141,11 +138,9 @@ async def on_message(message):
                 elif unit in ['millenium','millenia']:
                     amount_c=8760002.40024
                     unit_type_choice=random.choice(db['time'])             
-                
-
                 else:
-                    continue
-
+                    await message.reply("Unit not supported. Try again with another unit")
+                    break
                 converted = unit_type_choice[0] * amount_c
                 if not converted < 1:
                     converted = int(converted)
@@ -160,7 +155,9 @@ async def on_message(message):
                     response = response + str(i) + " "
 
                 await message.reply(response)
-
+                break
+        else:
+            await message.reply("Wrong format. Use `y.convert <amount> <unit>`")
 
 keep_alive()
 client.run(token)
