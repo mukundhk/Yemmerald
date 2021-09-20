@@ -24,9 +24,6 @@ async def on_message(message):
   elif "yemmeraald" in msg:
     await message.reply("Yes?\nUse y.help if you need it.")
 
-  elif msg == "y.ping":
-    await message.reply("Pong")
-
   elif msg == "hello there":
     await message.reply("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
 
