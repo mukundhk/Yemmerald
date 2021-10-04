@@ -8,7 +8,6 @@ from replit import db
 client = discord.Client()
 token = os.environ['token']
 
-
 @client.event
 async def on_ready():
   await client.change_presence(status=discord.Status.online,activity=discord.Game("y.help"))
@@ -21,9 +20,6 @@ async def on_message(message):
   if message.author.bot:
     return
 
-  elif "yemmeraald" in msg:
-    await message.reply("Yes?\nUse y.help if you need it.")
-
   elif msg == "hello there":
     await message.reply("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
 
@@ -33,7 +29,7 @@ async def on_message(message):
   elif msg in db["salam_i"]:
     await message.reply(random.choice(db["salam_o"]))
 
-  elif msg == "y.fulldb":
+  elif msg == "y.fulldb":  
     for i in db.keys():
       await message.reply(f"{i}={db[i]}")
 
