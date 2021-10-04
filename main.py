@@ -46,7 +46,7 @@ async def help(ctx):
 
 
 @client.command()
-async def convert(ctx,amount:float,unit:float):
+async def convert(ctx,amount:float,unit):
   if amount == int(amount): 
     amount = int(amount)
   amount_c = amount
