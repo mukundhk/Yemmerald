@@ -20,6 +20,8 @@ async def on_message(ctx):
     return
   elif msg == "hello there":
     await ctx.reply("https://tenor.com/view/hello-there-general-kenobi-star-wars-grevious-gif-17774326")
+    await ctx.channel.send("https://tenor.com/view/star-wars-general-grevious-bold-one-gif-12332693")
+    await ctx.channel.send("https://tenor.com/view/hello-there-kenobi-greivous-lightsaber-gif-16652462")
 
   elif msg == 'f':
     await ctx.reply(random.choice(db['f_gifs']))
@@ -36,7 +38,7 @@ async def fulldb(ctx):
 @client.command(name="help")
 async def help(ctx):
   embedVar = discord.Embed(title="Yemmerald v2.2.1",description="Bot made by **@Zeus_1347#0765**. Please DM if the bot is offline or if you have any suggestions or feedback. \n ",color=0x26a43b)
-  embedVar.set_thumbnail(url="https://i.imgur.com/3VJ5njN.jpg")
+  embedVar.set_thumbnail(url="https://i.imgur.com/iJn5Kgn.png")
   embedVar.add_field(name="Useless Unit Convertor",value="Use `y.convert <amount> <unit>` \nConverts your lengths, weights and time to random useless units",inline=False)
   embedVar.add_field(name="Hello There",value="Replies with General Kenobi",inline=False)
   embedVar.add_field(name="Salam",value="Replies with Alaikum Assalam",inline=False)
@@ -45,7 +47,7 @@ async def help(ctx):
   await ctx.reply(embed=embedVar)
 
 
-@client.command()
+@client.command(name="convert")
 async def convert(ctx,amount:float,unit):
   if amount == int(amount): 
     amount = int(amount)
@@ -123,6 +125,8 @@ async def convert(ctx,amount:float,unit):
       i = converted
     response = response + str(i) + " "
   await ctx.reply(response)
+
+
 
 
   
