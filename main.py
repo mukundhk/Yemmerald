@@ -37,15 +37,20 @@ async def fulldb(ctx):
 
 @client.command(name="help")
 async def help(ctx):
-  embedVar = discord.Embed(title="Yemmerald v2.2.1",description="Bot made by **@Zeus_1347#0765**. Please DM if the bot is offline or if you have any suggestions or feedback. \n ",color=0x26a43b)
+  embedVar = discord.Embed(title="Yemmerald v2.3.1",description="Bot made by **@Zeus_1347#0765**. Please DM if the bot is offline or if you have any suggestions or feedback. \n ",color=0x26a43b)
   embedVar.set_thumbnail(url="https://i.imgur.com/iJn5Kgn.png")
   embedVar.add_field(name="Useless Unit Convertor",value="Use `y.convert <amount> <unit>` \nConverts your lengths, weights and time to random useless units",inline=False)
+  embedVar.add_field(name="Spam DM",value="Use `y.spamdm <user> <message> <number> \nSpams a mentioned user in their DM the specified number of times. Use this when you dont want to spam on the server \n<number> is an optional parameter")
   embedVar.add_field(name="Hello There",value="Replies with General Kenobi",inline=False)
   embedVar.add_field(name="Salam",value="Replies with Alaikum Assalam",inline=False)
   embedVar.add_field(name="F",value="Replies with F to pay  respects",inline=False)
   embedVar.set_footer(text="PS: If you are a Mod, change the **@Yemmerald** role's color to `#26a43b` for __*~aEsThEtIcS~*__.")
   await ctx.reply(embed=embedVar)
 
+@client.command(name='spamdm')
+async def spamdm(ctx,user: discord.User, message, num=1):
+  for i in range(int(num)):
+    await user.send(message)
 
 @client.command(name="convert")
 async def convert(ctx,amount:float,unit):
@@ -125,6 +130,10 @@ async def convert(ctx,amount:float,unit):
       i = converted
     response = response + str(i) + " "
   await ctx.reply(response)
+
+
+
+
 
 
 
