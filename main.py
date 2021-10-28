@@ -37,11 +37,12 @@ async def fulldb(ctx):
 
 @client.command(name="help")
 async def help(ctx):
-  embedVar = discord.Embed(title="Yemmerald v2.3.2",description="Bot made by **@Zeus_1347#0765**. Please DM if the bot is offline or if you have any suggestions or feedback. \n ",color=0x26a43b)
+  embedVar = discord.Embed(title="Yemmerald v3.0",description="Bot made by **@Zeus_1347#0765**. Please DM if the bot is offline or if you have any suggestions or feedback. \n ",color=0x26a43b)
   embedVar.set_thumbnail(url="https://i.imgur.com/iJn5Kgn.png")
   embedVar.add_field(name="Useless Unit Convertor",value="Use `y.convert <amount> <unit>` \nConverts your lengths, weights and time to random useless units",inline=False)
   embedVar.add_field(name="Spam",value="Use `y.spam <user> <message> <number>` \nSpams a mentioned user the specified number of times. \n<number> is an optional parameter\nIf you want the message to have more than one word, use quotes")
   embedVar.add_field(name="Spam DM",value="Use `y.spamdm <user> <message> <number>` \nSpams a mentioned user in their DM the specified number of times. Use this when you dont want to spam on the server \n<number> is an optional parameter\nIf you want the message to have more than one word, use quotes")
+  embedVar.add_field(name="Poll",value="Used to create a poll. The bot will ping everyone.\nUse `y.poll <option> <option> .. <option>`\nUse spaces between options. If your <option> has more than one word, use `_` between words.")
   embedVar.add_field(name="Hello There",value="Replies with General Kenobi",inline=False)
   embedVar.add_field(name="Salam",value="Replies with Alaikum Assalam",inline=False)
   embedVar.add_field(name="F",value="Replies with F to pay  respects",inline=False)
@@ -50,10 +51,17 @@ async def help(ctx):
 
 @client.command(name='poll')
 async def poll(ctx,*args):
-  response=f'<@everyone>'
-  for i in args:
-    response+=f"\n{i}"
-  await ctx.send(response)
+  reactions=["🇦","🇧","🇨","🇩","🇪","🇫","🇬","🇭","🇮"]
+  try:
+    response=f'@everyone\nPoll by {ctx.author.mention}'
+    for i in range(len(args)):
+      response+=f"\nReact with {reactions[i]} for **{args[i]}**"
+  except:
+    await ctx.send("Wrong format. Use `y.poll <option>,<option>,..,<option>`")
+    return
+  message = await ctx.send(response)
+  for i in range(len(args)):
+    await message.add_reaction(reactions[i])
   
 @client.command(name='spam')
 async def spam(ctx,user:discord.User,message, num=1):
@@ -147,15 +155,6 @@ async def convert(ctx,amount:float,unit):
       i = converted
     response = response + str(i) + " "
   await ctx.reply(response)
-
-
-
-
-
-
-
-
-  
 
 keep_alive()
 client.run(token)
