@@ -42,7 +42,7 @@ async def help(ctx):
   embedVar.add_field(name="Useless Unit Convertor",value="Use `y.convert <amount> <unit>` \nConverts your lengths, weights and time to random useless units",inline=False)
   embedVar.add_field(name="Spam",value="Use `y.spam <user> <message> <number>` \nSpams a mentioned user the specified number of times. \n<number> is an optional parameter\nIf you want the message to have more than one word, use quotes")
   embedVar.add_field(name="Spam DM",value="Use `y.spamdm <user> <message> <number>` \nSpams a mentioned user in their DM the specified number of times. Use this when you dont want to spam on the server \n<number> is an optional parameter\nIf you want the message to have more than one word, use quotes")
-  embedVar.add_field(name="Poll",value="Used to create a poll. The bot will ping everyone.\nUse `y.poll <option> <option> .. <option>`\nUse spaces between options. If your <option> has more than one word, use `_` between words.")
+  embedVar.add_field(name="Poll",value="Used to create a poll. The bot will ping everyone.\nUse `y.poll <option> <option> .. <option>`\nUse spaces between options. If your <option> has more than one word, use `_` between words.",inline=False)
   embedVar.add_field(name="Hello There",value="Replies with General Kenobi",inline=False)
   embedVar.add_field(name="Salam",value="Replies with Alaikum Assalam",inline=False)
   embedVar.add_field(name="F",value="Replies with F to pay  respects",inline=False)
