@@ -96,6 +96,9 @@ async def convert(ctx,amount:float,unit):
   elif unit in ['kilometers','kilometres','kilometer','kilometre','km','kms']:
     amount_c*=1000
     unit_type_choice=random.choice(db['length'])
+  elif unit in ['mi','miles','mile']:
+    amount_c/=1609.34
+    unit_type_choice=random.choice(db['length'])
   elif unit in ['kg','kilogram','kgs','kilograms','kilo','kilos']:
     unit_type_choice=random.choice(db['weight'])
   elif unit in ['g','gs','gram','grams']:
