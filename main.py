@@ -5,7 +5,7 @@ from discord.ext import commands
 from keep_alive import keep_alive
 from replit import db
 
-client = commands.Bot(command_prefix='y.',help_command=None)
+client = commands.Bot(command_prefix=['y.','Y.'],help_command=None)
 token = os.environ['token']
 
 @client.event
