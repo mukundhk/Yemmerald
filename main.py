@@ -141,6 +141,7 @@ async def convert(ctx,amount:float,unit):
     unit_type_choice=random.choice(db['time'])             
   else:
     await ctx.reply("Unit not supported. Try again with another unit")
+    return
 
   converted = unit_type_choice[0] * amount_c
   if not converted < 1:
