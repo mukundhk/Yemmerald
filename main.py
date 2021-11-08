@@ -65,7 +65,7 @@ async def poll(ctx,*args):
   
 @client.command(name='spam')
 async def spam(ctx,user:discord.User,message, num=1):
-  if num>0:
+  if num>20:
     num=20
   for i in range(int(num)):
     await ctx.send(f"{user.mention} {message}")
