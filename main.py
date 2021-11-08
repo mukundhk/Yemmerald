@@ -51,7 +51,7 @@ async def help(ctx):
 
 @client.command(name='poll')
 async def poll(ctx,*args):
-  reactions=["🇦","🇧","🇨","🇩","🇪","🇫","🇬","🇭","🇮"]
+  reactions=["🇦","🇧","🇨","🇩","🇪","🇫","🇬","🇭","🇮","🇯","🇰","🇱","🇲","🇳","🇴"]
   try:
     response=f'@everyone\nPoll by {ctx.author.mention}'
     for i in range(len(args)):
